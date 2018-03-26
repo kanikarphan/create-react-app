@@ -1,6 +1,6 @@
 {
   "name": "@kanikarphan/react-scripts",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Configuration and scripts for Create React App.",
   "repository": "facebookincubator/create-react-app",
   "license": "MIT",
@@ -78,6 +78,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },

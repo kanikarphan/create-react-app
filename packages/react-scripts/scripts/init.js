@@ -40,6 +40,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
+    e2e: './node_modules/.bin/cucumber-js',
     eject: 'react-scripts eject',
   };
 
@@ -157,6 +158,9 @@ module.exports = function(
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} test`));
   console.log('    Starts the test runner.');
+  console.log();
+  console.log(chalk.cyan(`  ${displayedCommand} e2e`));
+  console.log('    Starts the end to end test runner.');
   console.log();
   console.log(
     chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
