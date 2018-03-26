@@ -14,6 +14,7 @@ parserOptions:
     arrowFunctions: true
 
 env:
+  browser: true
   jest: true
 
 rules:

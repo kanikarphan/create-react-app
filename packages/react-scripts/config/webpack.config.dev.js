@@ -141,7 +141,6 @@ module.exports = {
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: paths.appSrc,
         exclude: [/[/\\\\]node_modules[/\\\\]/],
       },
       {
@@ -174,7 +173,6 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
               // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -182,6 +180,7 @@ module.exports = {
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
+            exclude: /node_modules(?!\/webpack-dev-server)/,
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -212,7 +211,6 @@ module.exports = {
                         path.resolve(__dirname, './node_modules/'),
                       ]
                     }),
-                    postcssUrl(),
                     postcssVariables(),
                     postcssExtendRule(),
                     postcssCssNext({
