@@ -40,8 +40,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
-    e2e: './node_modules/.bin/cucumber-js',
-    eject: 'react-scripts eject',
+    e2e: './node_modules/.bin/cucumber-js'
   };
 
   fs.writeFileSync(
@@ -146,6 +145,11 @@ module.exports = function(
 
   console.log();
   console.log(`Success! Created ${appName} at ${appPath}`);
+  console.log();
+  console.log(chalk.red('VERY IMPORTANT:'));
+  console.log();
+  console.log('Create a .env file at the root of your project.');
+  console.log();
   console.log('Inside that directory, you can run several commands:');
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} start`));
@@ -161,16 +165,6 @@ module.exports = function(
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} e2e`));
   console.log('    Starts the end to end test runner.');
-  console.log();
-  console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
-  );
-  console.log(
-    '    Removes this tool and copies build dependencies, configuration files'
-  );
-  console.log(
-    '    and scripts into the app directory. If you do this, you can’t go back!'
-  );
   console.log();
   console.log('We suggest that you begin by typing:');
   console.log();
