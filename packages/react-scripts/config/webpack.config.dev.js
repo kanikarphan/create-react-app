@@ -151,7 +151,6 @@ module.exports = {
             loader: require.resolve('stylelint-custom-processor-loader'),
           },
         ],
-        include: paths.appSrc,
         exclude: [/[/\\\\]node_modules[/\\\\]/],
       },
       {

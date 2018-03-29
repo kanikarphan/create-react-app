@@ -21,6 +21,15 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+// postcss plugins
+const postcssImport = require('postcss-import');
+const postcssCssNext = require('postcss-cssnext');
+const postcssVariables = require('postcss-variables');
+const postcssExtendRule = require('postcss-extend-rule');
+const postcssMqpacker = require('css-mqpacker');
+const postcssOptionalComments = require('postcss-optional-comments');
+const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -134,23 +143,20 @@ module.exports = {
         enforce: 'pre',
         use: [
           {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              // @remove-on-eject-begin
-              // TODO: consider separate config for production,
-              // e.g. to enable no-console and no-debugger only in production.
-              baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
-              },
-              ignore: false,
-              useEslintrc: false,
-              // @remove-on-eject-end
-            },
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: paths.appSrc,
+        exclude: [/[/\\\\]node_modules[/\\\\]/],
+      },
+      {
+        test: /\.css$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: require.resolve('stylelint-custom-processor-loader'),
+          },
+        ],
+        exclude: [/[/\\\\]node_modules[/\\\\]/],
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -173,10 +179,6 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              // @remove-on-eject-begin
-              babelrc: false,
-              presets: [require.resolve('babel-preset-react-app')],
-              // @remove-on-eject-end
               compact: true,
             },
           },
@@ -219,16 +221,26 @@ module.exports = {
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
                         plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
+                          postcssImport({
+                            addDependencyTo: webpack,
+                            path: [
+                              path.resolve(__dirname, './src/css/'),
+                              path.resolve(__dirname, './node_modules/'),
+                            ]
+                          }),
+                          postcssVariables(),
+                          postcssExtendRule(),
+                          postcssCssNext({
                             browsers: [
                               '>1%',
-                              'last 4 versions',
+                              'last 2 versions',
                               'Firefox ESR',
                               'not ie < 9', // React doesn't support IE8 anyway
                             ],
-                            flexbox: 'no-2009',
                           }),
+                          postcssFlexbugsFixes(),
+                          postcssMqpacker(),
+                          postcssOptionalComments()
                         ],
                       },
                     },
