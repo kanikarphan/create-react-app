@@ -8,14 +8,12 @@
 // @remove-on-eject-end
 'use strict';
 
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -114,8 +112,11 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
       '@': paths.appSrc,
-      '@components': `${paths.appSrc}/components`,
+      '@component': `${paths.appSrc}/component`,
       '@css': `${paths.appSrc}/css`,
+      '@media': `${paths.appSrc}/media`,
+      '@store': `${paths.appSrc}/store`,
+      '@util': `${paths.appSrc}/util`,
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
