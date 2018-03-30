@@ -105,7 +105,7 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.css'],
     alias: {
       // @remove-on-eject-begin
       // Resolve Babel runtime relative to react-scripts.
@@ -119,6 +119,9 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      '@': paths.appSrc,
+      '@components': `${paths.appSrc}/components`,
+      '@css': `${paths.appSrc}/css`,
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -224,8 +227,8 @@ module.exports = {
                           postcssImport({
                             addDependencyTo: webpack,
                             path: [
-                              path.resolve(__dirname, './src/css/'),
-                              path.resolve(__dirname, './node_modules/'),
+                              path.resolve(__dirname, `${paths.appSrc}/css/`),
+                              path.resolve(__dirname, `../${paths.appSrc}/`),
                             ]
                           }),
                           postcssVariables(),

@@ -5,6 +5,7 @@
     "stage-2"
   ],
   "plugins": [
+    "transform-async-to-generator",
     "transform-decorators-legacy",
     "dynamic-import-webpack"
   ]

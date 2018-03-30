@@ -79,7 +79,9 @@
   "devDependencies": {
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
+    "prop-types": "^15.6.1",
     "react": "^16.0.0",
+    "react-async-component": "^2.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
     "whatwg-fetch": "^2.0.3"

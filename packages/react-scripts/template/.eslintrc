@@ -1,6 +1,9 @@
 extends:
   - eslint-config-airbnb
 
+parser:
+  babel-eslint
+  
 globals:
   testController: true
 
